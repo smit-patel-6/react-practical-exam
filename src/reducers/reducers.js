@@ -12,11 +12,13 @@ const userReducer = ( state = initialState,action) => {
     switch(action.type){
         case 'ADD_USER':
             state.users.push(action.payload)
-            return state;
+            const newState = {...state}
+            return newState;
         
         case 'REMOVE_USER':
-            return state.users.filter((value) => value.firstname !== action.payload.firstname)
-
+            return {
+                users:state.users.filter((value) => value.firstname !== action.payload.firstname)
+            }
         default:
             return state
     }
@@ -24,18 +26,3 @@ const userReducer = ( state = initialState,action) => {
 }
 
 export default userReducer;
-
-// case 'ADD_USER':
-            
-        //     users.push(action.payload)
-        //     return {
-        //         users:users,
-        //         loading:false
-        //     }
-
-        // case 'REMOVE_USER':
-        //     users.push(action.payload)
-        //     return {
-        //         users:users,
-        //         loading:false
-        //     }
